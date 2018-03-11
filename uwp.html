@@ -21,7 +21,8 @@ function isin (check, list){
     return false;
 }
 
-function genuwp(){
+function genuwp(nms){
+	if (nms === undefined){ nms = false; }
 	var size, grav, pressure, survival, hydro, hydrodesc, pop, popmod, govt, law, tl, starport, starportroll;
 	var tcAg, tcAs, tcBa, tcDe, tcFl, tcGa, tcHi, tcHt, tcIc, tcIn, tcLo, tcLt, tcNa, tcPo, tcRi, tcWa, tcVa, tcAmber;
 	var navalroll, pirateroll, scoutroll, navalbase, piratebase, scoutbase;
@@ -48,33 +49,39 @@ function genuwp(){
 	//hydropct = hydro lookup
 	//hydrodesc = hydrolookup
 
-	pop = roll2d6()-2
-	if (size <= 2){ pop -= 1; }
-	if (atmo > 10){ pop -= 2; }
-	if (atmo == 6){ pop += 3; }
-	if (atmo == 5){ pop += 1; }
-	if (atmo == 8){ pop += 1; }
-	if (hydro == 0 && atmo < 3){ pop -= 2; }
-	if (pop > 10){ pop = 10; }
-	if (pop < 0){ pop = 0; }
+	var nmsroll = roll2d6();
+	pop = roll2d6()-2;
+	if ((nms == true && nmsroll == 2) || nms == false){
+		if (size <= 2){ pop -= 1; }
+		if (atmo > 10){ pop -= 2; }
+		if (atmo == 6){ pop += 3; }
+		if (atmo == 5){ pop += 1; }
+		if (atmo == 8){ pop += 1; }
+		if (hydro == 0 && atmo < 3){ pop -= 2; }
+		if (pop > 10){ pop = 10; }
+		if (pop < 0){ pop = 0; }
+	} else {
+		pop = 0;
+	}
 	if (pop == 0){
 		popmod = 0;
 		govt = 0;
 		law = 0;
-		tech = 0;
-	} else {
-		popmod = roll2d6()-2 * 10^pop
+		tl = 0;
+		starport = "x";
 	}
+	popmod = roll2d6()-2 * 10^pop
 
-	starportroll = roll2d6()-7 + pop;
-	if (starportroll <= 2){ starport = 'x'; }
-	if (starportroll > 2 && starportroll < 5){ starport = 'e'; }
-	if (starportroll == 5 || starportroll == 6){ starport = 'd'; }
-        if (starportroll == 7 || starportroll == 8){ starport = 'c'; }
-        if (starportroll == 9 || starportroll == 10){ starport = 'b'; }
-	if (starportroll > 10){ starport = 'a'; }
-
-	//starportservices = starport lookup
+	if (starport != "x"){
+		starportroll = roll2d6()-7 + pop;
+		if (starportroll <= 2){ starport = 'x'; }
+		if (starportroll > 2 && starportroll < 5){ starport = 'e'; }
+		if (starportroll == 5 || starportroll == 6){ starport = 'd'; }
+		if (starportroll == 7 || starportroll == 8){ starport = 'c'; }
+		if (starportroll == 9 || starportroll == 10){ starport = 'b'; }
+		if (starportroll > 10){ starport = 'a'; }
+	}
+		//starportservices = starport lookup
 
 	if (govt != 0){ govt = roll2d6() - 7 + pop; }
 	if (govt < 0){ govt = 0; }
@@ -85,195 +92,7 @@ function genuwp(){
 	if (law > 15){ law = 15; }
 	//lawdesc = law lookup
 
-	tl = Math.floor(Math.random()*6+1);
-	if (starport == 'a'){ tl += 6; }
-	if (starport == 'b'){ tl += 4; }
-	if (starport == 'c'){ tl += 2; }
-	if (starport == 'x'){ tl -= 4; }
-	if (size <= 1){ tl += 2; }
-	if (size <= 4 && size >= 2){ tl += 1; }
-	if (atmo < 4){ tl += 1; }
-	if (atmo >= 10){ tl += 1; }
-	if (hydro == 0 || hydro == 9){ tl += 1; }
-	if (hydro == 10){ tl += 2; }
-	if (pop >= 1 && pop <= 5){ tl += 1; }
-	if (pop == 9){ tl += 1; }
-	if (pop == 10){ tl += 2; }
-	if (pop == 11){ tl += 3; }
-	if (pop == 12){ tl += 4; }
-	if (govt == 0){ tl += 1; }
-	if (govt == 5){ tl += 1; }
-	if (govt == 7){ tl += 2; }
-	if (govt == 13){ tl -= 2; }
-	if (govt == 14){ tl -= 2; }
-	if ((hydro == 0 || hydro == 10) && pop >= 6 && tl < 4){ tl = 4; }
-	if ((atmo == 4 || atmo == 7 || atmo == 9) && tl < 5){ tl = 5; }
-	if ((atmo <= 3 || (atmo >= 10 && atmo <= 12)) && tl < 7){ tl = 7; }
-	if ((atmo == 13 || atmo == 14) && hydro == 10 && tl < 7){ tl = 7; }
-	if (tl < 0){ tl = 0; }
-	if (tl > 15){ tl = 15; }
-
-	if (atmo >= 4 && atmo <= 9 && hydro >= 4 && hydro <= 8 && pop >=5 && pop <= 7){ tcAg = true; } //agricultural
-	if (size == 0 && atmo == 0 && hydro == 0){ tcAs = true; } //asteroid
-	if (pop == 0 && govt == 0 && law == 0){ tcBa = true; } //barren
-	if (atmo >= 2 && hydro == 0){ tcDe = true; } //desert
-	if (atmo >= 10 && hydro >= 1){ tcFl = true; } //fluid oceans
-	if ((atmo == 5 || atmo == 6 || atmo == 8) && hydro >= 4 && hydro <= 9 && pop >= 4 && pop <= 8){ tcGa = true; } //garden
-	if (pop >= 9){ tcHi = true; } //hipop
-	if (tl >= 12){ tcHt = true; } //hitech
-	if (atmo <= 1 && hydro >= 1){ tcIc = true; } //ice capped
-	if ((atmo <=2 || atmo == 4 || atmo == 7 || atmo == 9) && pop >= 9){ tcIn = true; } //industrial
-	if (pop >= 1 && pop <= 3){ tcLo = true; } //low pop
-	if (tl <= 5){ tcLt = true; } //lotech
-	if (atmo <= 3 && hydro <= 3 && pop >= 6){ tcNa = true; } //non-agricultural
-	if (atmo >= 2 && atmo <= 5 && hydro <= 3){ tcPo = true; } //poor
-	if ((atmo == 6 || atmo == 8) && (pop >= 6 && pop <= 8)){ tcRi = true; } //rich
-	if (hydro == 10){ tcWa = true; } //water world
-	if (atmo == 0){ tcVa = true; } //vacuum
-
-	if (atmo >= 10 || (govt == 0 || govt == 7 || govt == 10) || law == 0 || law >= 9){ tcAmber = true; } //amber, red, or X
-
-	if (starport == 'a' || starport == 'b'){
-		navalroll = roll2d6();
-		if (navalroll >= 8){ navalbase = true; }
-	}
-	if (starport != 'e' && starport != 'x'){
-		scoutroll = roll2d6();
-		if (starport == 'c'){ scoutroll -= 1; }
-		if (starport == 'b'){ scoutroll -= 2; }
-		if (starport == 'a'){ scoutroll -= 3; }
-		if (scoutroll >= 7){ scoutbase = true; }
-	}
-	if (starport != 'a' && navalbase == false){
-		pirateroll = roll2d6();
-		if (pirateroll == 12){ piratebase = true; }
-	}
-	// starport - size atmo hydro pop govt law tech star tags
-	//  "b-6329e119 Hi Na Po N"
-	//  starport - sz6 at3 hy2 p9 gE law11 tech9
-	uwpstr = starport;
-	uwpstr += size.toString(16);
-	uwpstr += atmo.toString(16);
-	uwpstr += hydro.toString(16);
-	uwpstr += pop.toString(16);
-	uwpstr += govt.toString(16);
-	uwpstr += law.toString(16);
-	uwpstr += '-';
-	uwpstr += tl.toString(16);
-	var tags = "";
-	//console.log(size + " " + atmo + " " + hydro + " " + pop + " " + govt + " " + law + " " + tl);
-	gravarr = [".02",".05",".15",".25",".35",".45",".7",".9","1.0","1.25","1.4"];
-	tlookup = ["Primitive","Primitive","Primitive","Primitive","Industrial","Industrial","Industrial","Pre-Stellar","Pre-Stellar","Pre-Stellar","Early Stellar","Early Stellar","Average Stellar","Average Stellar","Average Stellar","High Stellar"];
-	glookup = ["None","Company/Corporation","Participating Democracy","Self-Perpetuating Oligarchy","Representative Democracy","Feudal Technocracy","Captive Government","Balkanization","Civil Service Bureaucracy","Impersonal Bureaucracy","Charismatic Dictator","Non-Charismatic Leader","Charismatic Oligarchy","Religious Dictatorship","Religious Autocracy","Totalitarian Oligarchy"];
-	atmoarr = ["None","Trace","Very Thin, Tainted","Very Thin","Thin, Tainted","Thin","Standard","Standard, Tainted","Dense","Dense, Tainted","Exotic","Corrosive","Insidious","Dense, High","Thin, Low","Unusual"];
-	gunsarr = ["No restrictions","Poison gas, explosives, undetectable weapons, weapons or mass destruction","Portable energy weapons (except ship-mounted weapons)","Heavy weapons","Light assault weapons and submachine guns","Personal concealable weapons","All firearms except shotguns and stunners; carrying weapons discouraged","Shotguns","All bladed weapons, stunners","Any weapons outside one's residence","Any weapons allowed at all","Any weapons allowed at all","Any weapons allowed at all","Any weapons allowed at all","Any weapons allowed at all","Any weapons allowed at all"];
-
-	desc = "";
-	desc += gravarr[size];
-	desc += "G / ";
-	desc += atmoarr[atmo];
-	desc += " Atmo / ";
-	desc += tlookup[tl];
-	desc += " / ";
-	desc += glookup[govt]
-	desc += " / ";
-	desc += gunsarr[law];
-	//console.log(desc);
-
-	if (tcAg == true){ tags += "Ag "; }
-	if (tcAs == true){ tags += "As "; }
-	if (tcBa == true){ tags += "Ba "; }
-	if (tcDe == true){ tags += "De "; }
-	if (tcFl == true){ tags += "Fl "; }
-	if (tcGa == true){ tags += "Ga "; }
-	if (tcHi == true){ tags += "Hi "; }
-	if (tcHt == true){ tags += "Ht "; }
-	if (tcIc == true){ tags += "Ic "; }
-	if (tcIn == true){ tags += "In "; }
-	if (tcLo == true){ tags += "Lo "; }
-	if (tcLt == true){ tags += "Lt "; }
-	if (tcNa == true){ tags += "Na "; }
-	if (tcPo == true){ tags += "Po "; }
-	if (tcRi == true){ tags += "Ri "; }
-	if (tcWa == true){ tags += "Wa "; }
-	if (tcVa == true){ tags += "Va "; }
-	if (tcAmber == true){ tags += "Amber "; }
-	if (navalbase == true){ tags += "N"; }
-	if (scoutbase == true){ tags += "S"; }
-	if (piratebase == true){ tags += "P"; }
-	uwpstr += " ";
-	uwpstr += tags;
-	uwpstr += ": ";
-	uwpstr += desc;
-	return uwpstr;
-}
-
-function gennmsuwp(){
-	var size, grav, pressure, survival, hydro, hydrodesc, pop, popmod, govt, law, tl, starport, starportroll;
-	var tcAg, tcAs, tcBa, tcDe, tcFl, tcGa, tcHi, tcHt, tcIc, tcIn, tcLo, tcLt, tcNa, tcPo, tcRi, tcWa, tcVa, tcAmber;
-	var navalroll, pirateroll, scoutroll, navalbase, piratebase, scoutbase;
-	var uwpstr;
-
-	size = roll2d6()-2;
-	//var gravity = size lookup
-
-	atmo = roll2d6()-7+size;
-	if (size == 0){ atmo = 0; }
-	if (atmo > 15) { atmo = 15; }
-	if (atmo < 0){ atmo = 0; }
-	//var pressure = atmo lookup
-	//var survival = atmo lookup
-
-	hydro = roll2d6()-7+size
-	if (size < 2){ hydro = 0; }
-	//if atmo = 0|1|a|b|c then hydro -= 4
-	//if atmo = 14 then hydro -= 2
-	if (isin(atmo,(0,1,10,11,12))){ hydro -= 4; }
-	if (atmo == 14){ hydro -= 2; }
-	if (hydro > 10){ hydro = 10; }
-	if (hydro < 0){ hydro = 0; }
-	//hydropct = hydro lookup
-	//hydrodesc = hydrolookup
-
-	var nms = roll2d6();
-	if (nms == 2){
-		pop = roll2d6()-2
-		if (size <= 2){ pop -= 1; }
-		if (atmo > 10){ pop -= 2; }
-		if (atmo == 6){ pop += 3; }
-		if (atmo == 5){ pop += 1; }
-		if (atmo == 8){ pop += 1; }
-		if (hydro == 0 && atmo < 3){ pop -= 2; }
-		if (pop > 10){ pop = 10; }
-		if (pop < 0){ pop = 0; }
-		if (pop == 0){
-			popmod = 0;
-			govt = 0;
-			law = 0;
-			tech = 0;
-		} else {
-			popmod = roll2d6()-2 * 10^pop
-		}
-
-		starportroll = roll2d6()-7 + pop;
-		if (starportroll <= 2){ starport = 'x'; }
-		if (starportroll > 2 && starportroll < 5){ starport = 'e'; }
-		if (starportroll == 5 || starportroll == 6){ starport = 'd'; }
-					if (starportroll == 7 || starportroll == 8){ starport = 'c'; }
-					if (starportroll == 9 || starportroll == 10){ starport = 'b'; }
-		if (starportroll > 10){ starport = 'a'; }
-
-		//starportservices = starport lookup
-
-		if (govt != 0){ govt = roll2d6() - 7 + pop; }
-		if (govt < 0){ govt = 0; }
-		//govt = lookup
-
-		if (law != 0){ law = roll2d6()-7+govt; }
-		if (law < 0){ law = 0; }
-		if (law > 15){ law = 15; }
-		//lawdesc = law lookup
-
+	if (tl != 0){
 		tl = Math.floor(Math.random()*6+1);
 		if (starport == 'a'){ tl += 6; }
 		if (starport == 'b'){ tl += 4; }
@@ -301,14 +120,7 @@ function gennmsuwp(){
 		if ((atmo == 13 || atmo == 14) && hydro == 10 && tl < 7){ tl = 7; }
 		if (tl < 0){ tl = 0; }
 		if (tl > 15){ tl = 15; }
-	} else {
-		pop = 0;
-		govt = 0;
-		law = 0;
-		tl = 0;
-		starport = 'x';
 	}
-
 
 	if (atmo >= 4 && atmo <= 9 && hydro >= 4 && hydro <= 8 && pop >=5 && pop <= 7){ tcAg = true; } //agricultural
 	if (size == 0 && atmo == 0 && hydro == 0){ tcAs = true; } //asteroid
@@ -407,7 +219,7 @@ function gennmsuwp(){
 
 
 function printnmsuwp(){
-	var uwp = gennmsuwp();
+	var uwp = genuwp(true);
 	var uwpdiv = document.getElementById('uwpdiv');
 	var uwpbr = uwp + "<br>";
 	uwpdiv.innerHTML += uwpbr;
