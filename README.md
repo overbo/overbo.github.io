@@ -7,3 +7,5 @@ powershell code for selecting images in folders tagged by filename prepend metho
 Find more recent solo TTRPG content on my itch page here: [https://dangerfun.itch.io/dangerfuns-free-solo-ttrpg-stuff](https://dangerfun.itch.io/dangerfuns-free-solo-ttrpg-stuff)
 
 todo: add folder organization, maybe later
+
+contributions are welcome, ping me for access
