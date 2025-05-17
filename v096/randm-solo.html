@@ -1483,6 +1483,15 @@ function bloghtml(){
   document.getElementById("blogcopytextarea").value = resulttext;
 }
 
+function clearmenu(){
+  // clear out the hash array and remove everything from the html selectbox.
+  hasharr={ menu: ["PC^[pc]","NPC^[npc]","Thread^[thread]"], npc:[], pc: [], thread:[] }
+  document.getElementById("oramenudiv").style.display="block";
+  var selectbox = document.getElementById("OracleMenu");
+  for(i=selectbox.options.length-1;i>=0;i--){
+    selectbox.remove(i);
+  };
+}
 
 window.onload = function(){
   loadrandmdb();
