@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+	<style>body { font-family: Monospace; }</style>
+</head><body>
+<script type="text/javascript">
+function oohdemikin(){
+  var desc = "";
+  var opts = "";
+  var mind = Math.floor(Math.random()*6) + 1;
+  var body = Math.floor(Math.random()*6) + 1;
+  var soul = Math.floor(Math.random()*6) + 1;
+  var psyo = 0;
+  var roll = 4;
+  for (let i=0;i<roll; i++){
+    var d100 = Math.floor(Math.random()*100) + 1;
+    if (i>0){ desc += ", "; };
+    switch(d100){
+      case 1: desc += "albino"; body--; mind++; break;
+      case 2: desc += "amphibious"; body--; opts += "can breathe underwater. "; break;
+      case 3: desc += "androynous"; soul++; break;
+	  case 4: desc += "antlers"; body++; break;
+	  case 5: desc += "beak"; mind++; break;
+	  case 6: desc += "big bum"; soul++; break;
+	  case 7: desc += "big unit"; soul++; break;
+	  case 8: desc += "big ears"; mind++; break;
+	  case 9: desc += "big eyes"; psyo++; break;
+	  case 10: desc += "big head"; mind++; break;
+	  case 11: desc += "big teeth"; body++; break;
+  	  case 12: desc += "buxom"; soul++; break;
+	  case 13: desc += "burglar mask"; mind++; break;
+	  case 14: desc += "carapace"; soul--; body+=2; break;
+  	  case 15: desc += "cartilaginous"; body++; break;
+  	  case 16: desc += "chirping legs"; mind++; break;
+	  case 17: desc += "chubby"; body++; break;
+	  case 18: desc += "claws"; body++; break;
+	  case 19: desc += "close-sighted"; opts +="-1 mind without spectacles. "; break;
+	  case 20: desc += "cold-blooded"; mind--; body+=2; break;
+	  case 21: desc += "colourful"; soul++; break;
+	  case 22: desc += "cuddly"; body++; soul++; break;
+	  case 23: desc += "cute"; soul++; break;
+	  case 24: desc += "deft"; body++; break;
+	  case 25: desc += "dexterous"; body++; break;
+	  case 26: desc += "digitigrade legs"; body++; break;
+	  case 27: desc += "dislocating jaw"; body++; break;
+	  case 28: desc += "echolocation"; opts +="can see in the dark. "; break;
+	  case 29: desc += "elegant"; soul++; psyo++; break;
+	  case 30: desc += "exotic genitals"; body--; soul++; break;
+	  case 31: desc += "extra brain"; mind++; psyo++; break;
+	  case 32: desc += "extra heart"; body++; break;
+	  case 33: desc += "extra lungs"; body++; break;
+	  case 34: desc += "extra vertebrae"; soul++; break;
+	  case 35: desc += "fangs"; body++; break;
+	  case 36: desc += "fast"; body++; break;
+	  case 37: desc += "feathered"; mind++; break;
+	  case 38: desc += "fins"; body++; break;
+	  case 39: desc += "fleshy"; mind--; body+=2; break;
+	  case 40: desc += "floppy ears"; mind--; soul++; break;
+	  case 41: desc += "flowery"; soul++; break;
+	  case 42: desc += "fluffy"; soul++; break;
+	  case 43: desc += "fronds"; mind++; psyo++; break;
+	  case 44: desc += "fungal"; soul--; body++; break;
+	  case 45: desc += "furry"; soul++; break;
+	  case 46: desc += "furry mane"; body++; break;
+	  case 47: desc += "gills"; opts+= "can breathe underwater. " ; break;
+	  case 48: desc += "gorgeous"; soul+=2; break;
+	  case 49: desc += "hooves"; body++; break;
+	  case 50: desc += "horns"; body+=2; break;
+	  case 51: desc += "huge"; opts+="double total Health; mind is +1 max"; break;
+	  case 52: desc += "irridescent"; soul++; psyo++; break;
+	  case 53: desc += "long arms"; mind++; break;
+	  case 54: desc += "long legs"; body++; break;
+	  case 55: desc += "long neck"; soul++; break;
+	  case 56: desc += "luminescent"; soul++; psyo++; break;
+	  case 57: desc += "matriarchal"; soul++; break;
+	  case 58: desc += "monstrous"; soul-=3; body+=5; break;
+	  case 59: desc += "multiple arms"; body+=2; break;
+	  case 60: desc += "multiple legs"; body+=2; break;
+	  case 61: desc += "multiple eyes"; psyo++; break;
+	  case 62: desc += "mountable"; body +=8; opts+="can be ridden, can't use weapons. "; break;
+	  case 63: desc += "night vision"; opts += "can see in the dark. "; break;
+	  case 64: desc += "photosynthetic"; opts += "heals equal to Soul every 24 hours. "; break;
+	  case 65: desc += "predatory"; mind--; body += 2; break;
+	  case 66: desc += "prehensile tail"; soul++; body++; break;
+	  case 67: desc += "pheremonal"; soul+=3; break;
+	  case 68: desc += "regeneration"; opts += "heals equal to body every 24 hours. "; break;
+	  case 69: desc += "reptilian eyelids"; mind++; break;
+	  case 70: desc += "scales"; body++; break;
+	  case 71: desc += "segmented"; soul -=3; body+=4; break;
+	  case 72: desc += "sensitive ears"; mind++; break;
+	  case 73: desc += "sensitive eyes"; mind++; break;
+	  case 74: desc += "sensitive nose"; mind++; break;
+	  case 75: desc += "sensitive touch"; soul++; break;
+	  case 76: desc += "sharp teeth"; body++; break;
+	  case 77: desc += "singsong voice"; soul++; psyo++; break;
+	  case 78: desc += "slimy"; soul--; mind++; break;
+	  case 79: desc += "slit eyes"; mind++; break;
+	  case 80: desc += "snout"; body++; break;
+	  case 81: desc += "social"; soul++; break;
+	  case 82: desc += "soft"; soul++; break;
+	  case 83: desc += "spotted"; mind++; break;
+	  case 84: desc += "sticky tongue"; body++; break;
+	  case 85: desc += "strange"; soul-=2; mind+=2; break;
+	  case 86: desc += "striped"; soul++; break;
+	  case 87: desc += "strong"; body+=2; break;
+	  case 88: desc += "tail"; soul++; break;
+	  case 89: desc += "talons"; body++; break;
+	  case 90: desc += "tentacles"; soul--; mind+=2; break;
+	  case 91: desc += "thermal vision"; opts+="can see heat signatures. "; break;
+	  case 92: desc += "thick lips"; soul+=2; break;
+	  case 93: desc += "thick skin"; body+=2; break;
+	  case 94: desc += "translucent"; body-=2; soul+=2; break;
+	  case 95: desc += "tusks"; body+=2; break;
+	  case 96: desc += "unique"; soul--; mind++; break;
+	  case 97: desc += "unusually attractive"; body--; soul++; break;
+	  case 98: desc += "whiskers"; soul++; break;
+	  case 99: desc += "wooden"; soul-=2; body+=2; break;
+	  case 100: desc += "woolly"; mind--; body++; break;
+	}
+  }
+  var health = mind + body + soul;
+  var retval = "M" + mind + " B" + body + " S" + soul + " H" + health + "; Psy:" + psyo + "; " + desc + ". " + opts;
+   return retval;
+};
+
+function oohrobot(){
+  var mind = Math.floor(Math.random()*6) + 1;
+  var body = Math.floor(Math.random()*6) + 1;
+  var soul = Math.floor(Math.random()*6) + 1;
+  var health = mind + body + soul;
+  var retval = "M" + mind + " B" + body + " S" + soul + " H" + health
+  return retval;
+}
+
+function ooharmament(){
+  var ranged = 0;
+  var result2 = "";
+  var result3 = "";
+  var armor = 0;
+  var shield = 0;
+  var result = "";
+  // everyone has a melee weapon.
+  var melee = Math.floor(Math.random()*8) + 1;
+  var matrando = Math.floor(Math.random()*4) + 1;
+  let mats = "";
+  let cost = 0; 
+  let plus = 0;
+  var returns = ""; 
+  switch (matrando){
+	case 1: cost += 10; plus+=1; mats="Rust"; break;
+	case 2: cost += 30; plus+=2; mats="Shimmer"; break;
+	case 3: cost += 70; plus+=3; mats="Aeroplast"; break;
+	case 4: cost += 120; plus+=4; mats="Chrome"; break;
+  }
+  switch (melee){
+	case 1: result += "Dagger d4"; cost+=25; break;
+	case 2: result += "Staff d4"; cost+=35; break;
+	case 3: result += "Sword d6"; cost+=30; break;
+    case 4: result += "Mace d6"; cost+=30; break;
+	case 5: result += "Axe d8"; cost+=50; break;
+    case 6: result += "Sledgehammer d8"; cost+=70; break;
+    case 7: result += "Greatsword d10"; cost+=65; break;
+    case 8: result += "Greatmace d10"; cost+=80; break;
+  }
+  returns = mats + " " + result + '+' + plus + ' (' + cost + '); ';
+  // 50% of everyone has a ranged weapon
+  var hasranged = Math.floor(Math.random()*6) + 1;
+  if (hasranged >3){
+    var ranged = Math.floor(Math.random()*4) + 1;
+    var matrando = Math.floor(Math.random()*4) + 1;
+    mats = "";
+    cost = 0; 
+    plus = 0;
+    switch (matrando){
+	  case 1: cost += 10; plus+=1; mats="Rust"; break;
+	  case 2: cost += 30; plus+=2; mats="Shimmer"; break;
+	  case 3: cost += 70; plus+=3; mats="Aeroplast"; break;
+	  case 4: cost += 120; plus+=4; mats="Chrome"; break;
+    }
+    switch (ranged){
+	  case 1: result2 += "Maglock Pistol d4"; cost += 40; break;
+	  case 2: result2 += "Laspistol d6"; cost+=65; break;
+	  case 3: result2 += "Maglock Rifle d8"; cost += 80; break;
+	  case 4: result2 += "Lasrifle d10"; cost+=100; break;
+	}
+    returns += mats + " " + result2 + "+" + plus + " (" + cost + "). ";
+  }
+  // everyone has something here.
+  var armor = Math.floor(Math.random()*6) + 1;
+  switch (armor){
+	case 1: result3 = "Skimpy d2"; armcost=30; break;
+	case 2: result3 = "Skimpy d2"; armcost=30; break;
+	case 3: result3 = "Light d4";armcost=65; break;
+	case 4: result3 = "Light d4";armcost=65; break;
+	case 5: result3 = "Medium d6";armcost=100; break;
+	case 6: result3 = "Full d8"; armcost=300; break;
+  }
+  var hasupgrades = Math.floor(Math.random()*6) + 1;
+  if (hasupgrades>3){
+    var upgrades = Math.floor(Math.random()*8) + 1;
+    switch (upgrades){
+	  case 1: result3 += "+1"; armcost +=100; break;
+      case 2: result3 += "+1"; armcost +=100; break;
+	  case 3: result3 += "+1"; armcost +=100; break;
+      case 4: result3 += "+2"; armcost +=200; break;
+	  case 5: result3 += "+2"; armcost +=200; break;
+	  case 6: result3 += "+2"; armcost +=200; break;
+	  case 7: result3 += "+3"; armcost +=300; break;
+	  case 8: result3 += "+4"; armcost +=400; break;
+	  case 9: result3 += "+5"; armcost +=500; break;
+	  case 10: result3 += "+6"; armcost +=600; break;
+	}
+	result3 += ' (' + armcost + ')';
+  }
+  var hasshield = Math.floor(Math.random()*6) + 1;
+  if (hasshield>4){
+    var shield = Math.floor(Math.random()*3) + 1;
+	switch (shield){
+	  case 1: result3 += "; buckler d2 (50c)"; break;
+	  case 2: result3 += "; small shield d4 (90c)"; break;
+	  case 3: result3 += "; large shield d6 (120c)"; break;
+	}
+  }
+  returns += result3;
+  return returns;
+};
+
+function oohpack (){
+  var essentials = Math.floor(Math.random()*6) + Math.floor(Math.random()*6) + 1;
+  var commons = Math.floor(Math.random()*3) + 1;
+  var uncommons = Math.floor(Math.random()*6) + 1;
+  var rares = Math.floor(Math.random()*10) + 1;
+  if (commons < 4){ commons = Math.floor(Math.random()*4) + 1;} else { commons = 0 }
+  if (uncommons < 3){ uncommons = Math.floor(Math.random()*2) + 1;} else { uncommons = 0 }
+  if (rares < 2){ rares = Math.floor(Math.random()*2) + 1;} else { rares = 0 }
+  return "basic: " + essentials + ", common: " + commons + ", uncommon: " + uncommons + ", rares: " + rares;
+}
+
+function getgear(arg) {
+  var retgear = "";
+  var text = "";
+  var roll = 0;
+  var ess = ["rations","water","lubricant","battery","firelit torch","flashlight","cable rope","nanohealing salve","journal","omni-hacker"];
+  var com = ["desalination thermos","divination beacon","exoskeleton","fragmentation grenade 2d12","grappling gun","holomap","knowledge pod","love gas grenade","magnetised boots","magrail pistol 2d8","magrail shotgun 2d12","mass exaggeration syringe","night-vision goggles","notnorth programmable compass","nutrimush fabricator","rocket hammer 2d10","scrapbike","social networking pad","solar panel","telescopic sight (+2)"];
+  var unc = ["android synthflesh","battery charging station","bioscan visor","bounce boots","cargomech","geiger counter","genital enthusiasm matrix","hoverchair","laser amplification widget","missile launcher","mutation syringe","nanohealing salve fabricator","nanoweave tabard","Ph neutralising kit","pre-programmed wormhole generator","recycling suit","six-point weapons harness","terminal momentum dampener","thermoflage robe","waffle maker"];
+  var rar = ["antimatter grenade 5d20","cargo golem","encyclopedia galactica","fusion core","mitosis cloning vat","nano-fabrication unit","nanoflesh altering gel","psyonic neural injector","time dilating stimulation egg","virtual reality vat"];
+  switch (arg){
+    case 1: roll = Math.floor(Math.random()*10); retgear = ess[roll]; break;
+	case 2: roll = Math.floor(Math.random()*20); retgear = com[roll]; break;
+	case 3: roll = Math.floor(Math.random()*20); retgear = unc[roll]; break;
+	case 4: roll = Math.floor(Math.random()*10); retgear = rar[roll]; break;
+  }
+  text = "<p>" + retgear + "</p>";
+  demikindiv.innerHTML += text;
+  return retgear;
+}
+
+function getbot(){
+  var demi = oohrobot();
+  var arms = ooharmament();
+  var pack = oohpack();  
+  var dkout = "";
+  dkout = "<p>" + demi + "<br>" + arms + "<br>" + pack + "</p>";
+  demikindiv.innerHTML += dkout;
+  dkout = demi + " ## " + arms + " ## " + pack;
+  return dkout;
+}
+
+function getdk(){
+  var demi = oohdemikin();
+  var arms = ooharmament();
+  var pack = oohpack();
+  var dkout = "";
+  dkout = "<p>" + demi + "<br>" + arms + "<br>" + pack + "</p>";
+  demikindiv.innerHTML += dkout;
+  dkout = demi + " ## " + arms + " ## " + pack;
+  return dkout;
+}
+function getdk10(){ for (let i=0; i<10; i++){ getdk(); } }
+function getbot10(){for (let i=0; i<10; i++){ getbot(); } }
+
+</script>
+<button onclick="getdk()">one demikin</button>
+<button onclick="getdk10()">ten demikin</button>
+<button onclick="getbot()">one robot</button>
+<button onclick="getbot10()">ten robot</button>
+<button onclick="getgear(1)">basics</button>
+<button onclick="getgear(2)">commons</button>
+<button onclick="getgear(3)">uncommons</button>
+<button onclick="getgear(4)">rares</button>
+<div id="demikindiv"></div>
+</body></html>
