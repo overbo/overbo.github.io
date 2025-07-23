@@ -327,7 +327,7 @@ function getgear(arg) {
     case 3: roll = Math.floor(Math.random()*20); retgear = unc[roll]; break;
     case 4: roll = Math.floor(Math.random()*10); retgear = rar[roll]; break;
   }
-  text = "<p>" + retgear + "</p>";
+  text = retgear + "<br>";
   demikindiv.innerHTML += text;
   return retgear;
 }
@@ -355,7 +355,7 @@ function getdk(){
 }
 function getdk10(){ for (let i=0; i<10; i++){ getdk(); } }
 function getbot10(){for (let i=0; i<10; i++){ getbot(); } }
-
+function cleardiv(){ demikindiv.innerHTML = ""; }
 </script>
 <button onclick="getdk()">one demikin</button>
 <button onclick="getdk10()">ten demikin</button>
@@ -365,5 +365,6 @@ function getbot10(){for (let i=0; i<10; i++){ getbot(); } }
 <button onclick="getgear(2)">commons</button>
 <button onclick="getgear(3)">uncommons</button>
 <button onclick="getgear(4)">rares</button>
+<button onclick="cleardiv()">Clear</button>
 <div id="demikindiv"></div>
 </body></html>
