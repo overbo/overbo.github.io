@@ -224,6 +224,84 @@ function ooharmament(){
   return returns;
 };
 
+function oohpack2 (){
+  let essentials = Math.floor(Math.random()*6) + Math.floor(Math.random()*6) + 1;
+  let commons = Math.floor(Math.random()*3) + 1;
+  let uncommons = Math.floor(Math.random()*6) + 1;
+  let rares = Math.floor(Math.random()*10) + 1;
+  let ess = ["rations","water","lubricant","battery","firelit torch","flashlight","cable rope","nanohealing salve","journal","omni-hacker"];
+  let com = ["desalination thermos","divination beacon","exoskeleton","fragmentation grenade 2d12","grappling gun","holomap","knowledge pod","love gas grenade","magnetised boots","magrail pistol 2d8","magrail shotgun 2d12","mass exaggeration syringe","night-vision goggles","notnorth programmable compass","nutrimush fabricator","rocket hammer 2d10","scrapbike","social networking pad","solar panel","telescopic sight (+2)"];
+  let unc = ["android synthflesh","battery charging station","bioscan visor","bounce boots","cargomech","geiger counter","genital enthusiasm matrix","hoverchair","laser amplification widget","missile launcher","mutation syringe","nanohealing salve fabricator","nanoweave tabard","Ph neutralising kit","pre-programmed wormhole generator","recycling suit","six-point weapons harness","terminal momentum dampener","thermoflage robe","waffle maker"];
+  let rar = ["antimatter grenade 5d20","cargo golem","encyclopedia galactica","fusion core","mitosis cloning vat","nano-fabrication unit","nanoflesh altering gel","psyonic neural injector","time dilating stimulation egg","virtual reality vat"];
+
+  // probably a better way to do this but whatever.  we'll store the result counts in this array.
+  let essarr = [0,0,0,0,0,0,0,0,0,0,0];
+  let comarr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  let uncarr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  let rararr = [0,0,0,0,0,0,0,0,0,0,0];
+
+  let retval = "";
+  
+  if (commons < 4){ commons = Math.floor(Math.random()*4) + 1;} else { commons = 0 }
+  if (uncommons < 3){ uncommons = Math.floor(Math.random()*2) + 1;} else { uncommons = 0 }
+  if (rares < 2){ rares = Math.floor(Math.random()*2) + 1;} else { rares = 0 }
+
+  // store the rollcounts in the array at the index of the roll.
+  for (let i = 0; i < essentials; i++){ 
+    let thisroll = Math.floor(Math.random()*10);
+	//console.log(thisroll);
+	essarr[thisroll] += 1;
+  }
+  for (let i = 0; i < commons; i++){ 
+    let thisroll = Math.floor(Math.random()*20);
+	comarr[thisroll] += 1;
+  }
+  for (let i = 0; i < uncommons; i++){ 
+    let thisroll = Math.floor(Math.random()*20);
+	uncarr[thisroll] += 1;
+  }
+  for (let i = 0; i < rares; i++){ 
+    let thisroll = Math.floor(Math.random()*10);
+	rararr[thisroll] += 1;
+  }
+  // now iterate each roll count.
+  for (let i=0; i < 10; i++){
+	if (essarr[i] == 0){ continue; }
+	else { 
+	  retval += ess[i]
+	  if (essarr[i] > 1){ retval += ` x${essarr[i]}, `;}
+	  else { retval += ", "; }
+	}
+  }
+  for (let i=0; i < 20; i++){
+	if (comarr[i] == 0){ continue; }
+	else { 
+	  retval += com[i]
+	  if (comarr[i] > 1){ retval += ` x${comarr[i]}, `;}
+	  else { retval += ", "; }
+	}
+  }
+  for (let i=0; i < 20; i++){
+	if (uncarr[i] == 0){ continue; }
+	else { 
+	  retval += unc[i]
+	  if (uncarr[i] > 1){ retval += ` x${uncarr[i]}, `;}
+	  else { retval += ", "; }
+	}
+  }
+  for (let i=0; i < 10; i++){
+	if (rararr[i] == 0){ continue; }
+	else { 
+	  retval += rar[i]
+	  if (rararr[i] > 1){ retval += ` x${rararr[i]}, `;}
+	  else { retval += ", "; }
+	}
+  }
+  //console.log(retval);
+  //console.log("basic: " + essentials + ", common: " + commons + ", uncommon: " + uncommons + ", rares: " + rares);
+  return retval;
+}
+
 function oohpack (){
   var essentials = Math.floor(Math.random()*6) + Math.floor(Math.random()*6) + 1;
   var commons = Math.floor(Math.random()*3) + 1;
@@ -257,7 +335,7 @@ function getgear(arg) {
 function getbot(){
   var demi = oohrobot();
   var arms = ooharmament();
-  var pack = oohpack();  
+  var pack = oohpack2();  
   var dkout = "";
   dkout = "<p>" + demi + "<br>" + arms + "<br>" + pack + "</p>";
   demikindiv.innerHTML += dkout;
@@ -268,7 +346,7 @@ function getbot(){
 function getdk(){
   var demi = oohdemikin();
   var arms = ooharmament();
-  var pack = oohpack();
+  var pack = oohpack2();
   var dkout = "";
   dkout = "<p>" + demi + "<br>" + arms + "<br>" + pack + "</p>";
   demikindiv.innerHTML += dkout;
