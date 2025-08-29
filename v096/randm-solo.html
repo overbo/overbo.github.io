@@ -1534,7 +1534,7 @@ function explodingparser(dicestring,showwork){
   let myarr = dicestring.split(regexploder);
   let numdie = parseInt(myarr[0]);
   let dietype = parseInt(myarr[1]);
-  let bangs = myarr[2].match(/\!/g) || []).length;
+  let bangs = myarr[2].match(/\!/g) || [].length;
   let myresult = [];
   if (myarr.length == 3){ 
     myresult = exploder(numdie, dietype, bangs);
