@@ -136,7 +136,7 @@ var cardfaces=["Jack","Queen","King","Ace"];
 var deckofcards=[];
 var deckjokers=true;
 var lastquery="";
-var parsedebug = false;
+var parsedebug = true;//false;
 
 // dice parser
 function diceparser(dicestring,showwork){
@@ -1532,6 +1532,7 @@ function explodingparser(dicestring,showwork){
   // dicestring is a string, showwork is a boolean
   dicestring = dicestring.toLowerCase();
   let myarr = dicestring.split(regexploder);
+  if (myarr.length < 3){ return "exploding dice: missing syntax"; }
   let numdie = parseInt(myarr[0]);
   let dietype = parseInt(myarr[1]);
   let bangs = myarr[2].match(/\!/g) || [].length;
@@ -1543,10 +1544,10 @@ function explodingparser(dicestring,showwork){
   } else {
     myresult = exploder(numdie, dietype, bangs);
   }
-  //if (parsedebug){
-  //  console.log(`sum: ${sum}`);
-  //  console.log(rollarr.toString(););
-  //}
+  if (parsedebug){
+    console.log(`sum: ${sum}`);
+    console.log(rollarr.toString());
+  }
   // decent chance that this works.  TODO: finish thsi function.  where i'm closing things down today.  hindsight: it did not work.  chance was not decent.
   // rollstr = rollarr.join("+"); // i'm guessing this is part of the iterative process for the dice parser.
   let output = myresult.toString();;
