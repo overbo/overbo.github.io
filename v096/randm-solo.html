@@ -1533,8 +1533,8 @@ function explodingparser(dicestring,showwork){
   let dietype = parseInt(myarr[1]);
   let bangs = myarr[2].length;
   let myresult = [];
-  let xplodenum = 0;
-  if (myarr.length > 3){ xplodenum = parseInt(myarr[3]); }
+  let explodenum = 0;
+  if (myarr.length > 3){ explodenum = parseInt(myarr[3]); }
   if (xplodenum > 0) {
     myresult = exploder(numdie, dietype, bangs, explodenum);
   } else {
