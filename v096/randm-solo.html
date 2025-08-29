@@ -1547,10 +1547,10 @@ function explodingparser(dicestring,showwork){
   //  console.log(`sum: ${sum}`);
   //  console.log(rollarr.toString(););
   //}
-  // decent chance that this works.  TODO: finish thsi function.  where i'm closing things down today.
+  // decent chance that this works.  TODO: finish thsi function.  where i'm closing things down today.  hindsight: it did not work.  chance was not decent.
   // rollstr = rollarr.join("+"); // i'm guessing this is part of the iterative process for the dice parser.
-  let output = rollarr.toString();;
-  const sum = rollarr.flat().reduce((acc, curr) => acc + curr, 0);
+  let output = myresult.toString();;
+  const sum = myresult.flat().reduce((acc, curr) => acc + curr, 0);
   if (showwork){ output = "" + output + " = " + sum; }
   else { output = sum; }
   return output;
