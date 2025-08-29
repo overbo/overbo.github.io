@@ -1521,17 +1521,12 @@ function exploder(numdice, dietype, exploders=1, explodenum=dietype){
       }
     } 
   }
-  //if (parsedebug){
-  //  const sum = rollarr.flat().reduce((acc, curr) => acc + curr, 0);
-  //  console.log(`sum: ${sum}`);
-  //  console.log(rollarr.toString(););
-  //}
   return rollarr;
 }
 function explodingparser(dicestring,showwork){
   // dicestring is a string, showwork is a boolean
   dicestring = dicestring.toLowerCase();
-  let myarr = dicestring.split(regexploder);
+  let myarr = dicestring.match(regexploder); // bugfinder: split includes extra capture stuff (arr len=5-6), match does not (arr len=3-4).
   if (myarr.length < 3){ return "exploding dice: missing syntax"; }
   let numdie = parseInt(myarr[0]);
   let dietype = parseInt(myarr[1]);
@@ -1548,10 +1543,6 @@ function explodingparser(dicestring,showwork){
   // rollstr = rollarr.join("+"); // i'm guessing this is part of the iterative process for the dice parser.
   let output = myresult.toString();;
   const sum = myresult.flat().reduce((acc, curr) => acc + curr, 0);
-  if (parsedebug){
-    console.log(`sum: ${sum} ; output: ${output}`);
-    console.log(myresult.toString());
-  }
   if (showwork){ output = "" + output + " = " + sum; }
   else { output = sum; }
   return output;
