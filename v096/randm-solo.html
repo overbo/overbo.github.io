@@ -1536,10 +1536,10 @@ function explodingparser(dicestring,showwork){
   let dietype = parseInt(myarr[1]);
   let bangs = myarr[2].match(/\!/g) || [].length;
   let myresult = [];
-  if (typeof myarr[3] === 'undefined') {
-    myresult = exploder(numdie, dietype, bangs);
-  } else {
+  if (myarr[3]) {
     myresult = exploder(numdie, dietype, bangs, parseInt(myArr[3]));
+  } else {
+    myresult = exploder(numdie, dietype, bangs);
   }
   //if (parsedebug){
   //  console.log(`sum: ${sum}`);
