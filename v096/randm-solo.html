@@ -1527,6 +1527,7 @@ function explodingparser(dicestring,showwork){
   // dicestring is a string, showwork is a boolean
   dicestring = dicestring.toLowerCase();
   let myarr = dicestring.match(regexploder); // bugfinder: split includes extra capture stuff (arr len=5-6), match does not (arr len=3-4).
+  myarr.shift(); // we drop the match
   if (myarr.length < 3){ return "exploding dice: missing syntax"; }
   let numdie = parseInt(myarr[0]);
   let dietype = parseInt(myarr[1]);
